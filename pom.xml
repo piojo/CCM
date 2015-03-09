@@ -6,13 +6,13 @@
   <artifactId>ccm</artifactId>
 
   <packaging>pom</packaging>
-  <version>13.1.3-SNAPSHOT</version>
+  <version>14.8.1-SNAPSHOT</version>
   <name>Configuration Cache Manager for Quattor</name>
 
   <parent>
     <groupId>org.quattor.maven</groupId>
     <artifactId>build-profile</artifactId>
-    <version>1.31</version>
+    <version>1.34</version>
   </parent>
 
   <scm>
@@ -232,18 +232,12 @@
               </goals>
               <configuration>
                   <tasks name="compress">
-                      <gzip
-                          src="${project.build.directory}/doc/man/man8/ccm-fetch"
-                          destfile="${project.build.directory}/doc/man/man8/ccm-fetch.8.gz"/>
-                      <gzip
-                          src="${project.build.directory}/doc/man/man8/ccm-initialise"
-                          destfile="${project.build.directory}/doc/man/man8/ccm-initialise.8.gz"/>
-                      <gzip
-                          src="${project.build.directory}/doc/man/man8/ccm-purge"
-                          destfile="${project.build.directory}/doc/man/man8/ccm-purge.8.gz"/>
-                      <delete file="${project.build.directory}/doc/man/man8/ccm-fetch"/>
-                      <delete file="${project.build.directory}/doc/man/man8/ccm-initialise"/>
-                      <delete file="${project.build.directory}/doc/man/man8/ccm-purge"/>
+                      <gzip src="${project.build.directory}/doc/man/man8/ccm-fetch" destfile="${project.build.directory}/doc/man/man8/ccm-fetch.8.gz" />
+                      <gzip src="${project.build.directory}/doc/man/man8/ccm-initialise" destfile="${project.build.directory}/doc/man/man8/ccm-initialise.8.gz" />
+                      <gzip src="${project.build.directory}/doc/man/man8/ccm-purge" destfile="${project.build.directory}/doc/man/man8/ccm-purge.8.gz" />
+                      <delete file="${project.build.directory}/doc/man/man8/ccm-fetch" />
+                      <delete file="${project.build.directory}/doc/man/man8/ccm-initialise" />
+                      <delete file="${project.build.directory}/doc/man/man8/ccm-purge" />
                   </tasks>
               </configuration>
           </execution>
@@ -286,6 +280,7 @@
         <requires>
           <require>perl-JSON-XS &gt;= 2.3.0</require>
           <require>perl(Crypt::SSLeay)</require>
+          <require>perl(LWP::Protocol::https)</require>
         </requires>
         <defaultDirmode>755</defaultDirmode>
         <mappings>
@@ -372,7 +367,7 @@
             </sources>
           </mapping>
           <mapping>
-            <directory>/usr/share/doc/man/man8</directory>
+            <directory>${man.page.dir}/man8</directory>
             <filemode>644</filemode>
             <username>root</username>
             <groupname>root</groupname>
